@@ -39,8 +39,8 @@ $preference->notification_url = $url . 'notifications.php';
 $preference->payer = $payer;
 
 $preference->payment_methods = [
-    'excluded_payment_type' => [
-        ['id' => 'redlink']
+    'excluded_payment_types' => [
+        ['id' => 'redlink', 'id' => 'atm']
     ],
     'excluded_payment_methods' => [
         ['id' => 'amex'],
