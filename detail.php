@@ -40,7 +40,7 @@ $preference->payer = $payer;
 
 $preference->payment_methods = [
     'excluded_payment_type' => [
-        ['id' => 'atm']
+        ['id' => 'redlink']
     ],
     'excluded_payment_methods' => [
         ['id' => 'amex'],
