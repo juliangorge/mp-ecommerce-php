@@ -44,7 +44,10 @@
 
 
 <body class="as-theme-light-heroimage">
-
+<?php print_r(json_encode("{\"resource\":\"https:\/\/api.mercadolibre.com\/merchant_orders\/1707916400\",\"topic\":\"merchant_order\"}"
+"{\"resource\":\"https:\/\/api.mercadolibre.com\/collections\/notifications\/9380173593\",\"topic\":\"payment\"}"
+"{\"action\":\"payment.created\",\"api_version\":\"v1\",\"data\":{\"id\":\"9380173593\"},\"date_created\":\"2020-08-24T08:03:06Z\",\"id\":6323807943,\"live_mode\":true,\"type\":\"payment\",\"user_id\":\"469485398\"}"
+"{\"resource\":\"https:\/\/api.mercadolibre.com\/merchant_orders\/1707916400\",\"topic\":\"merchant_order\"}")); ?>
     <div class="stack">
         
         <div class="as-search-wrapper" role="main">
