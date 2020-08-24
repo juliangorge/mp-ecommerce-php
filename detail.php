@@ -11,6 +11,7 @@ $url = 'https://juliangorge-mp-ecommerce-php.herokuapp.com/';
 
 $item = new MercadoPago\Item();
 $item->id = '1234';
+$item->description = 'Dispositivo móvil de Tienda e-commerce';
 $item->title = $_POST['title']; 
 $item->quantity = 1;
 $item->unit_price = $_POST['price'];

@@ -2,7 +2,7 @@
 $input = @file_get_contents("php://input");
 
 file_put_contents(
-	'notifications.txt', 
+	'notifications2.txt', 
 	json_encode($input) . PHP_EOL, 
 	FILE_APPEND
 );
