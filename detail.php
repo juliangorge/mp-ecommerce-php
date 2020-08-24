@@ -10,10 +10,10 @@ $preference = new MercadoPago\Preference();
 $url = 'https://juliangorge-mp-ecommerce-php.herokuapp.com/';
 
 $item = new MercadoPago\Item();
-$item->id = "1234";
+$item->id = '1234';
 $item->title = $_POST['title']; 
 $item->quantity = 1;
-$item->unit_price = float($_POST['price']);
+$item->unit_price = $_POST['price'];
 $item->picture_url = $url . 'assets/003.jpg';
 
 $payer = new MercadoPago\Payer([
@@ -24,14 +24,10 @@ $payer = new MercadoPago\Payer([
         'area_code' => '11', 
         'number' => '22223333',
     ],
-    'identification' => [
-        'type' => 'DNI', 
-        'number' => '12345678',
-    ],
     'address' => [
         'street_name' => 'False', 
-        'street_number' => '123',
-        'zip_code' => '1111',
+        'street_number' => 123,
+        'zip_code' => '1111'
     ]
 ]);
 
@@ -54,14 +50,13 @@ $preference->payment_methods = [
 
 $preference->external_reference = 'juliangorge@hotmail.com';
 
-$preference->bacl_urls = [
+$preference->back_urls = [
     'pending' => $url . 'pending.php',
     'success' => $url . 'success.php',
     'failure' => $url . 'failure.php'
 ];
 
 $preference->save();
-
 ?>
 
 <!DOCTYPE html>
@@ -198,9 +193,7 @@ $preference->save();
                                             <?php echo "$" . $_POST['unit'] ?>
                                         </h3>
                                     </div>
-                                    <form action="<?php echo $preference->init_point; ?>">
-                                        <button type="submit" class="mercadopago-button" formmethod="post">Pagar la compra</button>
-                                    </form>
+                                    <a href="<?php echo $preference->init_point; ?>">Pagar la compra</a>
                                 </div>
                             </div>
                         </div>
