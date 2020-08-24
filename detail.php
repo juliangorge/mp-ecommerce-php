@@ -1,3 +1,69 @@
+<?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+require __DIR__  . '/vendor/autoload.php';
+
+MercadoPago\SDK::setAccessToken('APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398');
+MercadoPago\SDK::setIntegratorId("dev_24c65fb163bf11ea96500242ac130004");
+  
+$preference = new MercadoPago\Preference();
+$url = 'https://juliangorge-mp-ecommerce-php.herokuapp.com/';
+
+$item = new MercadoPago\Item();
+$item->id = "1234";
+$item->title = $_POST['title']; 
+$item->quantity = 1;
+$item->unit_price = float($_POST['price']);
+$item->picture_url = $url . 'assets/003.jpg';
+
+$payer = new MercadoPago\Payer([
+    'name' => 'Lalo', 
+    'surname' => 'Landa',
+    'email' => 'test_user_63274575@testuser.com',
+    'phone' => [
+        'area_code' => '11', 
+        'number' => '22223333',
+    ],
+    'identification' => [
+        'type' => 'DNI', 
+        'number' => '12345678',
+    ],
+    'address' => [
+        'street_name' => 'False', 
+        'street_number' => '123',
+        'zip_code' => '1111',
+    ]
+]);
+
+
+$preference->auto_return = "approved";
+$preference->items = [$item];
+$preference->notification_url = $url . 'notifications.php';
+
+$preference->payer = $payer;
+
+$preference->payment_methods = [
+    'excluded_payment_type' => [
+        ['id' => 'atm']
+    ],
+    'excluded_payment_methods' => [
+        ['id' => 'amex'],
+    ],
+    'installments' => 6
+];
+
+$preference->external_reference = 'juliangorge@hotmail.com';
+
+$preference->bacl_urls = [
+    'pending' => $url . 'pending.php',
+    'success' => $url . 'success.php',
+    'failure' => $url . 'failure.php'
+];
+
+$preference->save();
+
+?>
+
 <!DOCTYPE html>
 <html class="supports-animation supports-columns svg no-touch no-ie no-oldie no-ios supports-backdrop-filter as-mouseuser" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
@@ -130,7 +196,9 @@
                                             <?php echo "$" . $_POST['unit'] ?>
                                         </h3>
                                     </div>
-                                    <button type="submit" class="mercadopago-button" formmethod="post">Pagar</button>
+                                    <form action="<?php echo $preference->init_point; ?>">
+                                        <button type="submit" class="mercadopago-button" formmethod="post">Pagar la compra</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
