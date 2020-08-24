@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="format-detection" content="telephone=no">
 
+    <script src="https://www.mercadopago.com/v2/security.js" view="home"></script>
+
     <script
     src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
@@ -70,6 +72,7 @@
             </div>
             <div class="as-search-results as-filter-open as-category-landing as-desktop" id="as-search-results">
                 <h1 class="text-center my-3">Su pago ha sido aprobado!</h1>
+                <pre><?php print_r($_GET); ?></pre>
             </div>
         </div>
         <div role="alert" class="as-loader-text ally" aria-live="assertive"></div>
